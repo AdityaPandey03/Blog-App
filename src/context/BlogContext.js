@@ -29,7 +29,10 @@ const blogReducer = (state, action) => {
 const addBlogPost = dispatch => {
   return (title, content, callback) => {
     dispatch({ type: 'add_blogpost', payload: { title, content } });
-    callback();
+    if(callback){
+      callback();
+    }
+    
   };
 };
 const deleteBlogPost = dispatch => {
@@ -39,9 +42,11 @@ const deleteBlogPost = dispatch => {
 };
 
 const editBlogPost = dispatch => {
-  return (id,title,contnent) =>{
-    dispatch({type: 'edit_blogpost', payload:{ id:id, title:title , content:contnent }})
-
+  return (id,title,content,callback) =>{
+    dispatch({type: 'edit_blogpost', payload:{ id:id, title:title , content:content }});
+    if(callback){
+      callback();
+    }
   }
 }
 
